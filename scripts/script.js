@@ -9,10 +9,30 @@ const clearButton = document.querySelector(".clear");
 let operands = [[],[]];
 let currentNum = 0;
 let operator = '';
-let result = '';
+let result;
 
 function displayScreen(){
     display.textContent = operands[0] + ' ' + operator + ' ' + operands[1];
+}
+
+function displayResult(){
+    display.textContent =  operands[0] + ' ' + operator + ' ' + operands[1] + ' = ' + result;
+}
+
+function getResult(operator,operands){
+    switch (operator) {
+        case '+':
+            return operands[0][0]+operands[1][0];
+            break;
+        case '-':
+            return operands[0][0]-operands[1][0];
+            break;
+        case '*':
+            return operands[0][0]*operands[1][0];
+            break;
+        case '/':
+            return operands[0][0]/operands[1][0]
+    }
 }
 
 numpad.addEventListener("click", function(event) {
@@ -37,5 +57,6 @@ clearButton.addEventListener("click", function(event) {
 });
 
 evalButton.addEventListener('click', function(event) {
-
+    result = getResult(operator,operands);
+    displayResult();
 })
