@@ -1,6 +1,4 @@
 const display = document.querySelector(".display");
-const numpad = document.querySelector(".numpad");
-const numpadRows = document.querySelector(".numpad-row");
 const numbers = document.querySelectorAll(".num");
 const operators = document.querySelector(".operators");
 const evalButton = document.querySelector(".eval");
@@ -19,19 +17,19 @@ function displayResult(){
     display.textContent =  operands[0] + ' ' + operator + ' ' + operands[1] + ' = ' + result;
 }
 
-function getResult(operator,operands){
+function getResult(operator,operand1,operand2){
     switch (operator) {
         case '+':
-            return operands[0][0]+operands[1][0];
+            return operand1+operand2;
             break;
         case '-':
-            return operands[0][0]-operands[1][0];
+            return operand1-operand2;
             break;
         case '*':
-            return operands[0][0]*operands[1][0];
+            return operand1*operand2;
             break;
         case '/':
-            return operands[0][0]/operands[1][0]
+            return operand1/operand2
     }
 }
 
@@ -57,6 +55,6 @@ clearButton.addEventListener("click", function(event) {
 });
 
 evalButton.addEventListener('click', function(event) {
-    result = getResult(operator,operands);
+    result = getResult(operator,operands[0][0],operands[1][0]);
     displayResult();
 })
